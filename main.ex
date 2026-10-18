@@ -1,5 +1,5 @@
 defmodule Add do
-  def main(x(y)) do
+  def main(x, y) do
     IO.puts(x + y)
   end
 end
@@ -13,3 +13,4 @@ end
 
 Hello.main()
 Add.main(17, 18)
+Example.main()
