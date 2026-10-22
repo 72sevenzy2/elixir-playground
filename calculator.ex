@@ -15,11 +15,16 @@ defmodule Calc do
     end
   end
 
+  def pow(a, b) do
+    :math.pow(a, b)
+  end
+
   def main do
     opcodes = %{
       "+" => "add",
       "-" => "subtract",
       "/" => "divide",
+      "^" => "pow"
     }
 
     IO.puts("simple calculator")
@@ -41,13 +46,33 @@ defmodule Calc do
       |> String.trim()
       |> String.to_integer()
 
-    operator = IO.inspect(Map.get(opcodes, opcode))
+    operator = Map.get(opcodes, opcode)
     case operator do
-      "divide" -> IO.puts("result is #{divide(a, b)}")
-      "add" -> IO.puts("result is #{add(a, b)}")
-      "subtract" -> IO.puts("result is #{substract(a, b)}")
-
-      "_" -> IO.puts("invalid operator")
+      "divide" ->
+        result = divide(a, b)
+                 |> to_string()
+                 |> String.to_charlist()
+                 |> hd()
+        IO.puts("result is #{result}")
+      "add" -> 
+        result = add(a, b)
+        |> to_string()
+        |> String.to_charlist()
+        |> hd()
+        IO.puts("result is #{result}")
+      "subtract" -> 
+        result = substract(a, b)
+                 |> to_string()
+                 |> String.to_charlist()
+                 |> hd()
+        IO.puts("result is #{result}")
+      "pow" ->
+        result = pow(a, b)
+                 |> to_string()
+                 |> String.to_charlist()
+                 |> hd()
+        IO.puts("result is #{result}")
+      _ -> IO.puts("invalid operator")
     end
   end
 end
