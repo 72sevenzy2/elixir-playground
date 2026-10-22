@@ -16,6 +16,12 @@ defmodule Calc do
   end
 
   def main do
+    opcodes = %{
+      "+" => "add",
+      "-" => "subtract",
+      "/" => "divide",
+    }
+
     IO.puts("simple calculator")
     IO.write("enter the first operand:")
     a =
@@ -35,16 +41,13 @@ defmodule Calc do
       |> String.trim()
       |> String.to_integer()
 
-    if opcode == "/" do
-      IO.puts("result is #{divide(a, b)}")
-    else
-      if opcode == "+" do
-      IO.puts("result is #{add(a, b)}")
-      else
-        if opcode == "-" do
-      IO.puts("result is #{substract(a, b)}")
-        end
-      end
+    operator = IO.inspect(Map.get(opcodes, opcode))
+    case operator do
+      "divide" -> IO.puts("result is #{divide(a, b)}")
+      "add" -> IO.puts("result is #{add(a, b)}")
+      "subtract" -> IO.puts("result is #{substract(a, b)}")
+
+      "_" -> IO.puts("invalid operator")
     end
   end
 end
