@@ -1,13 +1,13 @@
 defmodule Calc do
-  def add(a, b) do
+  defp add(a, b) do
     a + b
   end
 
-  def substract(a, b) do
+  defp substract(a, b) do
     a - b
   end
 
-  def divide(a, b) do
+  defp divide(a, b) do
     if b == 0 do
       "cannot divide by 0"
     else
@@ -15,7 +15,7 @@ defmodule Calc do
     end
   end
 
-  def pow(a, b) do
+  defp pow(a, b) do
     :math.pow(a, b)
   end
 
@@ -29,15 +29,17 @@ defmodule Calc do
 
     IO.puts("simple calculator")
     IO.write("enter the first operand:")
+
     a =
       IO.gets("\nnum: ")
       |> String.trim()
       |> String.to_integer()
 
     IO.puts("enter opcode")
-    opcode = IO.gets("\nopcode: ")
-             |> String.trim()
 
+    opcode =
+      IO.gets("\nopcode: ")
+      |> String.trim()
 
     IO.write("enter the second operand:")
 
@@ -47,32 +49,46 @@ defmodule Calc do
       |> String.to_integer()
 
     operator = Map.get(opcodes, opcode)
+
     case operator do
       "divide" ->
-        result = divide(a, b)
-                 |> to_string()
-                 |> String.to_charlist()
-                 |> hd()
+        result =
+          divide(a, b)
+          |> to_string()
+          |> String.to_charlist()
+          |> hd()
+
         IO.puts("result is #{result}")
-      "add" -> 
-        result = add(a, b)
-        |> to_string()
-        |> String.to_charlist()
-        |> hd()
+
+      "add" ->
+        result =
+          add(a, b)
+          |> to_string()
+          |> String.to_charlist()
+          |> hd()
+
         IO.puts("result is #{result}")
-      "subtract" -> 
-        result = substract(a, b)
-                 |> to_string()
-                 |> String.to_charlist()
-                 |> hd()
+
+      "subtract" ->
+        result =
+          substract(a, b)
+          |> to_string()
+          |> String.to_charlist()
+          |> hd()
+
         IO.puts("result is #{result}")
+
       "pow" ->
-        result = pow(a, b)
-                 |> to_string()
-                 |> String.to_charlist()
-                 |> hd()
+        result =
+          pow(a, b)
+          |> to_string()
+          |> String.to_charlist()
+          |> hd()
+
         IO.puts("result is #{result}")
-      _ -> IO.puts("invalid operator")
+
+      _ ->
+        IO.puts("invalid operator")
     end
   end
 end
