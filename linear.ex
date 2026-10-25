@@ -5,12 +5,21 @@ defmodule LinearSearch do
   end
 
   defp search([], _val) do
-    IO.puts("not found")
+    -1
   end
 
-  defp search([head | tail], val) do
-    IO.inspect(head)
-    search(tail, val)
+  defp search([h | t], val) do
+    if h == val do
+      0
+    else
+      result = search(t, val)
+
+      if result == -1 do
+        -1
+      else
+        result + 1
+      end
+    end
   end
 end
 
