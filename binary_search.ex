@@ -1,6 +1,7 @@
 defmodule BinarySearch do
   @nums [1, 2, 3, 4, 5]
   def search(t) do
+    find(@nums, t, 0, length(@nums) - 1)
   end
 
   defp find(nums, t, low, high) do
@@ -23,3 +24,5 @@ defmodule BinarySearch do
     end
   end
 end
+
+IO.inspect(BinarySearch.search(5))
