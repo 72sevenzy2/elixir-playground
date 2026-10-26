@@ -1,13 +1,17 @@
 defmodule StartTodoList do
-  def main do
-    IO.puts("enter a task")
+  def main(tasks \\ []) do
     task = IO.gets("task: ") |> to_string() |> String.trim()
 
-    if task == "quit" do
-      IO.puts("exited")
-    else
-      IO.puts(task)
-      main()
+    cond do
+      task == "quit" ->
+        IO.puts("exited")
+
+      task == "ls" ->
+        IO.inspect(tasks)
+        main(tasks)
+
+      true ->
+        main([task | tasks])
     end
   end
 end
