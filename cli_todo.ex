@@ -10,6 +10,10 @@ defmodule StartTodoList do
         IO.inspect(tasks)
         main(tasks)
 
+      task == "clear" ->
+        tasks = []
+        main(tasks)
+
       task == "delete" ->
         IO.puts("enter the task to delete")
 
