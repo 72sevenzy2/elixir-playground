@@ -22,6 +22,4 @@ defmodule Loggerrrr do
 end
 
 entries = Loggerrrr.parse()
-
-first_entry = Enum.at(entries, 0)
-IO.inspect(first_entry)
+Enum.each(entries, &IO.inspect/1)
