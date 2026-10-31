@@ -3,11 +3,12 @@ defmodule Loggerrrr do
     File.stream!("logs.log")
     |> Enum.map(fn line ->
       case String.split(line, "\"") do
-        [_prefix, request, suffix] ->
+        [prefix, request, suffix] ->
           [method, endpoint, _version] = String.split(request)
           [status, bytes] = String.split(suffix)
 
           %{
+            prefix: prefix,
             method: method,
             endpoint: endpoint,
             status: String.to_integer(status),
